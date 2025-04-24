@@ -20,11 +20,14 @@ const app = express()
 
 //SETTING UP CORS
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5000'], 
+    origin: (origin, callback) => {
+      callback(null, true); // allow all origins dynamically
+    },
+    credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-}));
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
+  
 app.use(express.json())
 app.get('/running', (req, res) => {
     res.send('server is running')
