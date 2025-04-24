@@ -26,6 +26,9 @@ app.use(cors({
     credentials: true
 }));
 app.use(express.json())
+app.get('/running', (req, res) => {
+    res.send('server is running')
+  })
 
 //mongodb connection setup
 mongoose.connect(process.env.MONGO_URL)
